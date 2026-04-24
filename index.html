@@ -11,15 +11,15 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style type="text/tailwindcss">
     @theme {
-      --color-bg: #FEFCF8;
-      --color-bg-deep: #F7F0E6;
-      --color-surface: #FFF8EE;
-      --color-text: #1E293B;
-      --color-text-secondary: #334155;
-      --color-text-muted: #64748B;
-      --color-accent-1: #C2410C;
-      --color-accent-2: #65713A;
-      --color-accent-3: #2563EB;
+      --color-bg: #F7F4EE;
+      --color-bg-deep: #ECE5D8;
+      --color-surface: #FBF7F0;
+      --color-text: #243142;
+      --color-text-secondary: #425466;
+      --color-text-muted: #6B7280;
+      --color-accent-1: #7C3F00;
+      --color-accent-2: #556B2F;
+      --color-accent-3: #3B5B92;
       --color-glass-bg: rgba(255,255,255,0.86);
       --color-glass-border: rgba(30,41,59,0.08);
       --color-vignette: rgba(0,0,0,0.06);
@@ -28,7 +28,7 @@
     }
   </style>
   <style>
-    :root { --color-bg: #FEFCF8; --color-text: #1E293B; --glow-color-rgb: 194,65,12; --font-body:'Source Sans 3',sans-serif; }
+    :root { --color-bg: #F7F4EE; --color-text: #243142; --glow-color-rgb: 124,63,0; --font-body:'Source Sans 3',sans-serif; }
     *,*::before,*::after{box-sizing:border-box}
     html,body{background:var(--color-bg);margin:0}
     body{font-family:var(--font-body);color:var(--color-text);overflow:hidden;height:100vh;width:100vw}
@@ -52,12 +52,12 @@
     .slide::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px;opacity:.02;mix-blend-mode:multiply}
     .slide::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 58%,var(--color-vignette) 100%)}
     .hero-emoji{font-size:108px;line-height:1;animation:float 3s ease-in-out infinite}
-    .paper-card{background:var(--color-glass-bg);border:1px solid var(--color-glass-border);border-radius:24px;box-shadow:0 10px 30px rgba(30,41,59,.06)}
-    .accent-line{border-left:5px solid var(--color-accent-1)}
+    .paper-card{background:var(--color-glass-bg);border:1px solid var(--color-glass-border);border-radius:18px;box-shadow:0 8px 18px rgba(30,41,59,.05)}
+    .accent-line{border-left:4px solid var(--color-accent-1)}
     .bar-track{height:22px;border-radius:999px;background:rgba(30,41,59,.08);overflow:hidden}
     .bar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--color-accent-1),var(--color-accent-3));width:0}
     .section-label{letter-spacing:.16em;text-transform:uppercase;color:var(--color-text-muted);font-size:.85rem}
-    .metric{font-size:3rem;font-weight:800;line-height:1;color:var(--color-accent-1)}
+    .metric{font-size:2.7rem;font-weight:800;line-height:1;color:var(--color-accent-1)}
     .small{font-size:.96rem}
     .mouse-spotlight{position:fixed;inset:0;z-index:99;pointer-events:none}
     @media (max-width: 900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr!important}.metric{font-size:2.2rem}}
@@ -83,29 +83,48 @@
 
   <div class="slide" data-slide="2">
     <div class="gradient-mesh">
-      <div class="blob" style="width:300px;height:300px;top:-70px;right:-70px;background:var(--color-accent-1);opacity:.08"></div>
-      <div class="blob" style="width:220px;height:220px;bottom:-60px;left:-40px;background:var(--color-accent-2);opacity:.07"></div>
+      <div class="blob" style="width:260px;height:260px;top:-60px;right:-70px;background:var(--color-accent-1);opacity:.06"></div>
+      <div class="blob" style="width:220px;height:220px;bottom:-50px;left:-40px;background:var(--color-accent-2);opacity:.05"></div>
     </div>
     <div class="content">
-      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-8 reveal">Ключевые понятия</h2>
-      <div class="grid grid-cols-2 grid-2 gap-6">
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-6 reveal">Ключевые понятия</h2>
+      <div class="grid grid-cols-2 grid-2 gap-6 mb-6">
         <div class="paper-card p-8 reveal">
-          <div class="text-3xl mb-3">🌐</div>
-          <h3 class="text-2xl font-bold mb-3 text-accent-1">Социальная сеть</h3>
-          <p class="text-lg text-text-secondary">Онлайн-платформа, где пользователь создаёт профиль, вступает в связи, публикует контент и взаимодействует с широкой аудиторией.</p>
-          <p class="mt-4 small text-text-muted">Примеры: ВКонтакте, Instagram, TikTok.</p>
+          <div class="text-2xl font-bold mb-3 text-accent-1">Социальная сеть</div>
+          <p class="text-lg text-text-secondary mb-5">Платформа для публичного или полу-публичного взаимодействия: профиль, лента, публикации, комментарии и сеть контактов.</p>
+          <div class="paper-card p-5" style="background:#fffaf2">
+            <div class="text-sm uppercase tracking-[0.14em] text-text-muted mb-3">структура</div>
+            <div class="flex items-center justify-between text-center gap-2">
+              <div><div class="text-3xl">👤</div><div class="small">Профиль</div></div>
+              <div class="text-2xl text-accent-3">→</div>
+              <div><div class="text-3xl">📰</div><div class="small">Контент</div></div>
+              <div class="text-2xl text-accent-3">→</div>
+              <div><div class="text-3xl">👥</div><div class="small">Аудитория</div></div>
+            </div>
+          </div>
         </div>
         <div class="paper-card p-8 reveal">
-          <div class="text-3xl mb-3">💬</div>
-          <h3 class="text-2xl font-bold mb-3 text-accent-3">Социальный мессенджер</h3>
-          <p class="text-lg text-text-secondary">Сервис для личной переписки, звонков, групповых чатов и каналов, где общение чаще строится внутри закрытых или полуоткрытых сообществ.</p>
-          <p class="mt-4 small text-text-muted">Примеры: Telegram, WhatsApp, Viber.</p>
+          <div class="text-2xl font-bold mb-3 text-accent-3">Социальный мессенджер</div>
+          <p class="text-lg text-text-secondary mb-5">Сервис для быстрых сообщений, звонков, чатов, каналов и координации внутри ограниченного круга участников.</p>
+          <div class="paper-card p-5" style="background:#f8fafc">
+            <div class="text-sm uppercase tracking-[0.14em] text-text-muted mb-3">структура</div>
+            <div class="flex items-center justify-between text-center gap-2">
+              <div><div class="text-3xl">💬</div><div class="small">Диалог</div></div>
+              <div class="text-2xl text-accent-1">→</div>
+              <div><div class="text-3xl">👨‍👩‍👧‍👦</div><div class="small">Чат</div></div>
+              <div class="text-2xl text-accent-1">→</div>
+              <div><div class="text-3xl">📣</div><div class="small">Канал</div></div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+      <div class="paper-card p-5 reveal accent-line">
+        <p class="text-lg text-text-secondary"><b>Главное различие:</b> соцсеть строится вокруг публичного контента и социальных связей, а мессенджер — вокруг прямой коммуникации и групповой координации.</p>
+      </div>
+          <p class="small text-text-muted mt-5 reveal">Источник: справочные материалы по определениям соцсетей и мессенджеров; Livedune; CyberLeninka.</p>
+</div>
   </div>
-
-  <div class="slide" data-slide="3">
+<div class="slide" data-slide="3">
     <div class="gradient-mesh">
       <div class="blob" style="width:330px;height:330px;top:-90px;left:-60px;background:var(--color-accent-3);opacity:.07"></div>
       <div class="blob" style="width:260px;height:260px;bottom:-50px;right:-50px;background:var(--color-accent-2);opacity:.06"></div>
@@ -114,15 +133,16 @@
       <p class="section-label reveal">что показывают исследования</p>
       <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-8 reveal">Влияние неоднозначно</h2>
       <div class="grid grid-cols-4 grid-4 gap-5 mb-8">
-        <div class="paper-card p-6 text-center reveal"><div class="metric" data-count="74">0</div><div class="mt-2 font-semibold">подростков говорят, что соцсети помогают чувствовать связь с друзьями</div></div>
-        <div class="paper-card p-6 text-center reveal"><div class="metric" data-count="63">0</div><div class="mt-2 font-semibold">видят в соцсетях пространство для творчества</div></div>
-        <div class="paper-card p-6 text-center reveal"><div class="metric" data-count="39">0</div><div class="mt-2 font-semibold">чувствуют, что соцсети усиливают драму</div></div>
-        <div class="paper-card p-6 text-center reveal"><div class="metric" data-count="27">0</div><div class="mt-2 font-semibold">говорят, что видимое онлайн ухудшает самочувствие</div></div>
+        <div class="paper-card p-6 text-center reveal"><div class="metric" data-count="47">0</div><div class="text-2xl font-bold text-text-muted -mt-1">%</div><div class="mt-2 font-semibold">испытывают беспокойство по поводу конфиденциальности персональных данных</div></div>
+        <div class="paper-card p-6 text-center reveal"><div class="metric" data-count="43">0</div><div class="text-2xl font-bold text-text-muted -mt-1">%</div><div class="mt-2 font-semibold">отрицательно относятся к использованию своих данных и комментариев для обучения ИИ</div></div>
+        <div class="paper-card p-6 text-center reveal"><div class="metric" data-count="67">0</div><div class="text-2xl font-bold text-text-muted -mt-1">%</div><div class="mt-2 font-semibold">боятся использования персональных данных в преступных целях</div></div>
+        <div class="paper-card p-6 text-center reveal"><div class="metric" data-count="75">0</div><div class="text-2xl font-bold text-text-muted -mt-1">%</div><div class="mt-2 font-semibold">не передают персональные данные без необходимости</div></div>
       </div>
       <div class="paper-card p-6 reveal accent-line">
-        <p class="text-xl text-text-secondary">Вывод исследований: цифровые платформы одновременно дают поддержку, доступ к информации и самовыражению, но при проблемном использовании связаны со снижением благополучия, перегрузкой и нарушением сна.</p>
+        <p class="text-xl text-text-secondary">По данным исследования Ушкина, Коваль и Мартыновой, подростки одновременно осознают цифровые риски и чаще выбирают осторожные, но преимущественно пассивные стратегии самозащиты.</p>
       </div>
-    </div>
+          <p class="small text-text-muted mt-5 reveal">Источник: Ушкин С. Г., Коваль Е. А., Мартынова М. Д., 2025. Интеграция образования. DOI: 10.15507/1991-9468.029.202501.114-131.</p>
+</div>
   </div>
 
   <div class="slide" data-slide="4">
@@ -137,7 +157,8 @@
         <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">❤️</div><h3 class="text-xl font-bold mb-2">Поиск одобрения</h3><p class="text-text-secondary">Лайки, реакции и комментарии превращаются в внешние маркеры значимости, из-за чего самооценка сильнее зависит от реакции сверстников.</p></div>
         <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">🧠</div><h3 class="text-xl font-bold mb-2">Групповые нормы</h3><p class="text-text-secondary">Алгоритмы и групповая коммуникация закрепляют повторяющиеся взгляды, язык общения и модели поведения внутри цифровой среды.</p></div>
       </div>
-    </div>
+          <p class="small text-text-muted mt-5 reveal">Источник: обзор исследований по самооценке подростков, цифровой социализации и медиавлиянию; CyberLeninka; прикреплённая статья 2025.</p>
+</div>
   </div>
 
   <div class="slide" data-slide="5">
@@ -153,7 +174,8 @@
         <div class="paper-card p-7 reveal"><h3 class="text-2xl font-bold mb-3 text-accent-2">Что они дают</h3><ul class="text-lg text-text-secondary space-y-3"><li>• Быструю координацию по урокам, заданиям и событиям.</li><li>• Поддержку одноклассников и обмен полезными материалами.</li><li>• Вовлечение тихих учеников, которым проще писать, чем говорить вслух.</li><li>• Удобный канал связи между классом, учителем и родителями.</li></ul></div>
         <div class="paper-card p-7 reveal"><h3 class="text-2xl font-bold mb-3 text-accent-1">Почему это важно</h3><div class="space-y-4 text-text-secondary text-lg"><div class="accent-line pl-4">Цифровая среда расширяет школьное общение за пределы урока.</div><div class="accent-line pl-4">При хороших правилах чат становится инструментом сотрудничества, а не только переписки.</div><div class="accent-line pl-4">Подростки учатся цифровой ответственности на реальных примерах.</div></div></div>
       </div>
-    </div>
+          <p class="small text-text-muted mt-5 reveal">Источник: Research Journal, 2024; материалы о цифровых школьных сообществах и подростковой коммуникации.</p>
+</div>
   </div>
 
   <div class="slide" data-slide="6">
@@ -169,7 +191,8 @@
         <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">🔐</div><h3 class="text-xl font-bold mb-2">Утечка данных</h3><p class="text-text-secondary">Скриншоты, номера телефонов, фотографии и личные детали часто публикуются без согласия участников.</p></div>
         <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">⏰</div><h3 class="text-xl font-bold mb-2">Постоянная доступность</h3><p class="text-text-secondary">Ожидание немедленного ответа повышает стресс, отвлекает от учёбы и ухудшает режим отдыха и сна.</p></div>
       </div>
-    </div>
+          <p class="small text-text-muted mt-5 reveal">Источник: Ушкин С. Г., Коваль Е. А., Мартынова М. Д., 2025; UN Child and Youth Safety Online; Kaspersky.</p>
+</div>
   </div>
 
   <div class="slide" data-slide="7">
@@ -186,10 +209,11 @@
         <div class="grid grid-cols-[180px_1fr_60px] gap-4 items-center"><div class="font-semibold">Самочувствие хуже</div><div class="bar-track"><div class="bar-fill" data-width="27"></div></div><div class="font-bold">27%</div></div>
       </div>
       <div class="grid grid-cols-2 grid-2 gap-6">
-        <div class="paper-card p-6 reveal"><div class="metric" data-count="11">0</div><p class="font-semibold mt-2">процентов подростков в Европе — проблемное использование соцмедиа в 2022 году</p></div>
-        <div class="paper-card p-6 reveal"><div class="metric" data-count="7">0</div><p class="font-semibold mt-2">процентов было в 2018 году; рост указывает на усиление проблемы</p></div>
+        <div class="paper-card p-6 reveal"><div class="metric" data-count="47">0</div><p class="font-semibold mt-2">испытывают беспокойство по поводу конфиденциальности персональных данных</p><p class="small text-text-muted mt-2">Ушкин, Коваль, Мартынова, 2025</p></div>
+        <div class="paper-card p-6 reveal"><div class="metric" data-count="43">0</div><p class="font-semibold mt-2">отрицательно относятся к использованию их данных и комментариев для обучения ИИ</p><p class="small text-text-muted mt-2">Ушкин, Коваль, Мартынова, 2025</p></div>
       </div>
-    </div>
+          <p class="small text-text-muted mt-5 reveal">Источник: Ушкин С. Г., Коваль Е. А., Мартынова М. Д., 2025; WHO Europe, 2024.</p>
+</div>
   </div>
 
   <div class="slide" data-slide="8">
@@ -198,17 +222,30 @@
       <div class="blob" style="width:240px;height:240px;bottom:-60px;left:-50px;background:var(--color-accent-2);opacity:.07"></div>
     </div>
     <div class="content">
-      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-8 reveal">Рекомендации по цифровой безопасности</h2>
-      <div class="space-y-4">
-        <div class="paper-card p-5 accent-line reveal"><div class="text-xl font-bold mb-1">1. Беречь персональные данные</div><div class="text-lg text-text-secondary">Не публиковать адрес, пароль, номер телефона, геолокацию и приватные фото.</div></div>
-        <div class="paper-card p-5 accent-line reveal"><div class="text-xl font-bold mb-1">2. Фиксировать буллинг</div><div class="text-lg text-text-secondary">Сохранять скриншоты и сообщения, чтобы можно было обратиться к взрослым или администрации.</div></div>
-        <div class="paper-card p-5 accent-line reveal"><div class="text-xl font-bold mb-1">3. Не общаться с незнакомцами без осторожности</div><div class="text-lg text-text-secondary">Подозрительные просьбы, угрозы и шантаж нужно сразу обсуждать со взрослыми.</div></div>
-        <div class="paper-card p-5 accent-line reveal"><div class="text-xl font-bold mb-1">4. Настроить приватность</div><div class="text-lg text-text-secondary">Ограничить круг тех, кто видит профиль, фото, истории и контакты.</div></div>
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-8 reveal">Практики цифровой безопасности</h2>
+      <div class="grid grid-cols-2 grid-2 gap-6 mb-6">
+        <div class="paper-card p-7 reveal">
+          <h3 class="text-2xl font-bold mb-4 text-accent-1">Что делают подростки</h3>
+          <div class="grid gap-4">
+            <div class="paper-card p-4" style="background:#fffaf2"><div class="metric">75%</div><div class="font-semibold">не передают персональные данные без необходимости</div></div>
+            <div class="paper-card p-4" style="background:#f8fafc"><div class="metric">18%</div><div class="font-semibold">отключают гаджеты от сети, когда не пользуются ими</div></div>
+            <div class="paper-card p-4" style="background:#f6f8f2"><div class="metric">12%</div><div class="font-semibold">заклеивают камеры в гаджетах</div></div>
+          </div>
+        </div>
+        <div class="paper-card p-7 reveal">
+          <h3 class="text-2xl font-bold mb-4 text-accent-3">Что важно для школы</h3>
+          <ul class="text-lg text-text-secondary space-y-3">
+            <li>• В исследовании доминируют пассивные стратегии защиты, а не проактивные практики.</li>
+            <li>• Авторы рекомендуют интегрировать модули цифровой безопасности в учебный процесс.</li>
+            <li>• Отдельный акцент делается на рисках больших данных и чат-ботов на основе языковых моделей.</li>
+            <li>• Полезно объяснять не только «как защититься», но и что происходит с данными после публикации.</li>
+          </ul>
+        </div>
       </div>
+      <div class="paper-card p-5 accent-line reveal"><p class="text-lg text-text-secondary"><b>Источник:</b> Ушкин С. Г., Коваль Е. А., Мартынова М. Д. Цифровая безопасность подростков: социологический анализ. Интеграция образования. 2025;29(1):114–131. DOI: 10.15507/1991-9468.029.202501.114-131.</p></div>
     </div>
   </div>
-
-  <div class="slide" data-slide="9">
+<div class="slide" data-slide="9">
     <div class="gradient-mesh">
       <div class="blob" style="width:330px;height:330px;top:-80px;left:-50px;background:var(--color-accent-2);opacity:.08"></div>
       <div class="blob" style="width:240px;height:240px;bottom:-50px;right:-50px;background:var(--color-accent-3);opacity:.07"></div>
@@ -221,7 +258,8 @@
         <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">🎯</div><h3 class="text-xl font-bold mb-2">Распознавание манипуляций</h3><p class="text-text-secondary">Кликбейт, эмоциональное давление, ложные сенсации и монтаж влияют на мнение сильнее, чем кажется.</p></div>
         <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">🧾</div><h3 class="text-xl font-bold mb-2">Понимание цифрового следа</h3><p class="text-text-secondary">Любой пост, комментарий или репост может сохраниться надолго и влиять на репутацию человека.</p></div>
       </div>
-    </div>
+          <p class="small text-text-muted mt-5 reveal">Источник: материалы по медиаграмотности подростков; CyberLeninka; UNICEF/UNESCO обзорные рекомендации.</p>
+</div>
   </div>
 
   <div class="slide" data-slide="10">
@@ -238,10 +276,46 @@
         <p class="text-2xl text-text-secondary">Соцсети и мессенджеры не являются ни только угрозой, ни только пользой: их эффект зависит от цифровых привычек, правил общения, уровня медиаграмотности и поддержки со стороны взрослых и школы.</p>
       </div>
       <p class="section-label mt-6 reveal">безопасность + критическое мышление + уважение в общении</p>
-    </div>
+          <p class="small text-text-muted mt-5 reveal">Источник: обобщение исследований WHO, CyberLeninka и статьи Ушкина, Коваль, Мартыновой, 2025.</p>
+</div>
   </div>
 
   <div class="slide" data-slide="11">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:300px;height:300px;top:-70px;left:-50px;background:var(--color-accent-3);opacity:.07"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-50px;right:-50px;background:var(--color-accent-2);opacity:.06"></div>
+    </div>
+    <div class="content">
+      <p class="section-label reveal">российские публикации и open science</p>
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-7 reveal">Статистика вовлечённости и КиберЛенинка</h2>
+      <div class="grid grid-cols-2 grid-2 gap-6 mb-6">
+        <div class="paper-card p-7 reveal">
+          <h3 class="text-xl font-bold mb-4 text-accent-1">Данные из статей</h3>
+          <div class="grid gap-4">
+            <div class="paper-card p-4" style="background:#fffaf2"><div class="metric">59,2%</div><div class="font-semibold">подростков предпочитают проводить досуг в социальных сетях</div><div class="small text-text-muted mt-1">по данным статьи о влиянии соцсетей на современных подростков</div></div>
+            <div class="paper-card p-4" style="background:#f8fafc"><div class="metric">96%</div><div class="font-semibold">старшеклассников назвали соцсети популярным интернет-ресурсом</div><div class="small text-text-muted mt-1">по данным исследования медиапотребления подростков</div></div>
+            <div class="paper-card p-4" style="background:#f6f8f2"><div class="metric">98%</div><div class="font-semibold">указали видеохостинги как популярный цифровой ресурс</div><div class="small text-text-muted mt-1">контекст медиапотребления в цифровой среде</div></div>
+          </div>
+        </div>
+        <div class="paper-card p-7 reveal">
+          <h3 class="text-xl font-bold mb-4 text-accent-3">Open Science в КиберЛенинке</h3>
+          <ul class="text-lg text-text-secondary space-y-3">
+            <li>• КиберЛенинка позиционирует себя как библиотеку открытого доступа и часть инфраструктуры Open Science.</li>
+            <li>• В библиотеке размещено более 3,6 млн научных статей.</li>
+            <li>• Платформа сообщает о примерно 6 млн посетителей в месяц.</li>
+            <li>• Материалы распространяются по модели Open Access, а часть публикаций — по лицензии CC BY.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="paper-card p-6 reveal">
+        <div class="grid grid-cols-[200px_1fr_60px] gap-4 items-center mb-4"><div class="font-semibold">Досуг в соцсетях</div><div class="bar-track"><div class="bar-fill" data-width="59.2"></div></div><div class="font-bold">59%</div></div>
+        <div class="grid grid-cols-[200px_1fr_60px] gap-4 items-center mb-4"><div class="font-semibold">Популярность соцсетей</div><div class="bar-track"><div class="bar-fill" data-width="96"></div></div><div class="font-bold">96%</div></div>
+        <div class="grid grid-cols-[200px_1fr_60px] gap-4 items-center"><div class="font-semibold">Популярность видео</div><div class="bar-track"><div class="bar-fill" data-width="98"></div></div><div class="font-bold">98%</div></div>
+      </div>
+          <p class="small text-text-muted mt-5 reveal">Источник: статьи CyberLeninka о вовлечённости подростков и страница КиберЛенинки о модели Open Science.</p>
+</div>
+  </div>
+<div class="slide" data-slide="12">
     <div class="gradient-mesh">
       <div class="blob" style="width:320px;height:320px;top:-70px;right:-60px;background:var(--color-accent-1);opacity:.08"></div>
       <div class="blob" style="width:250px;height:250px;bottom:-50px;left:-50px;background:var(--color-accent-2);opacity:.07"></div>
@@ -249,25 +323,29 @@
     </div>
     <div class="content">
       <p class="section-label reveal">использованные материалы</p>
-      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-6 reveal">Список источников</h2>
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-6 reveal">Библиография</h2>
       <div class="paper-card p-7 reveal">
-        <ol class="text-[1.08rem] leading-7 text-text-secondary space-y-2 pl-6">
-          <li>World Health Organization. <i>Teens, screens and mental health</i>. 2024.</li>
-          <li>Pew Research Center. <i>Teens, Social Media and Mental Health</i>. 2025.</li>
-          <li>United Nations. <i>Child and Youth Safety Online</i>.</li>
-          <li>Kaspersky. <i>Безопасность в интернете: рекомендации для детей и родителей</i>.</li>
-          <li>Research Journal. <i>Феномен социальных сетей и мессенджеров в детской и подростковой среде: социологический анализ</i>. 2024.</li>
-          <li>Справочные и обзорные материалы по определениям социальных сетей и мессенджеров.</li>
+        <ol class="text-[0.98rem] leading-7 text-text-secondary space-y-2 pl-6">
+          <li>Ушкин С. Г., Коваль Е. А., Мартынова М. Д. <i>Цифровая безопасность подростков: социологический анализ</i>. Интеграция образования. 2025. Т. 29, № 1. С. 114–131. DOI: 10.15507/1991-9468.029.202501.114-131.</li>
+          <li>World Health Organization. <i>Teens, screens and mental health</i>. 2024. URL: https://www.who.int/europe/news/item/25-09-2024-teens--screens-and-mental-health</li>
+          <li>Pew Research Center. <i>Teens, Social Media and Mental Health</i>. 2025. URL: https://www.pewresearch.org/internet/2025/04/22/teens-social-media-and-mental-health/</li>
+          <li>United Nations. <i>Child and Youth Safety Online</i>. URL: https://www.un.org/en/global-issues/child-and-youth-safety-online</li>
+          <li>Kaspersky. <i>Безопасность в интернете: рекомендации для детей и родителей</i>. URL: https://www.kaspersky.ru/resource-center/preemptive-safety/kids-guidelines</li>
+          <li>Research Journal. <i>Феномен социальных сетей и мессенджеров в детской и подростковой среде: социологический анализ</i>. 2024. URL: https://research-journal.org/en/archive/2-140-2024-february/10.23670/IRJ.2024.140.48</li>
+          <li>CyberLeninka. <i>Влияние социальных сетей на самооценку подростков</i>. URL: https://cyberleninka.ru/article/n/vliyanie-sotsialnyh-setey-na-samootsenku-podrostkov</li>
+          <li>CyberLeninka. <i>Цифровая безопасность подростков: социологический анализ</i>. URL: https://cyberleninka.ru/article/n/tsifrovaya-bezopasnost-podrostkov-sotsiologicheskiy-analiz</li>
+          <li>CyberLeninka. <i>Формирование медиаграмотности как условие обеспечения информационной безопасности несовершеннолетних</i>. URL: https://cyberleninka.ru/article/n/formirovanie-mediagramotnosti-kak-uslovie-obespecheniya-informatsionnoy-bezopasnosti-nesoversh</li>
         </ol>
       </div>
-    </div>
+          <p class="small text-text-muted mt-5 reveal">Источник: библиографический список презентации.</p>
+</div>
   </div>
 </div>
 <div class="nav-controls" aria-label="Навигация по слайдам">
   <button class="nav-btn" onclick="changeSlide(-1)" aria-label="Предыдущий слайд">&#8249;</button>
   <div class="slide-dots" id="dots"></div>
   <button class="nav-btn" onclick="changeSlide(1)" aria-label="Следующий слайд">&#8250;</button>
-  <span class="slide-counter" id="counter">1 / 11</span>
+  <span class="slide-counter" id="counter">1 / 12</span>
 </div>
 <script>
 let current=1;const total=document.querySelectorAll('.slide').length;const dotsContainer=document.getElementById('dots');const counter=document.getElementById('counter');for(let i=1;i<=total;i++){const dot=document.createElement('div');dot.className='dot'+(i===1?' active':'');dot.onclick=()=>goToSlide(i);dotsContainer.appendChild(dot)}
