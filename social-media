@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="slides-format" content="viewport">
+  <title>Соцсети и мессенджеры: влияние на подростков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;700;800&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-bg: #FEFCF8;
+      --color-bg-deep: #F7F0E6;
+      --color-surface: #FFF8EE;
+      --color-text: #1E293B;
+      --color-text-secondary: #334155;
+      --color-text-muted: #64748B;
+      --color-accent-1: #C2410C;
+      --color-accent-2: #65713A;
+      --color-accent-3: #2563EB;
+      --color-glass-bg: rgba(255,255,255,0.86);
+      --color-glass-border: rgba(30,41,59,0.08);
+      --color-vignette: rgba(0,0,0,0.06);
+      --font-display: 'Literata', serif;
+      --font-body: 'Source Sans 3', sans-serif;
+    }
+  </style>
+  <style>
+    :root { --color-bg: #FEFCF8; --color-text: #1E293B; --glow-color-rgb: 194,65,12; --font-body:'Source Sans 3',sans-serif; }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{background:var(--color-bg);margin:0}
+    body{font-family:var(--font-body);color:var(--color-text);overflow:hidden;height:100vh;width:100vw}
+    .deck{width:100vw;height:100vh;position:relative}
+    .slide{position:absolute;top:0;left:0;width:100%;height:100%;background:var(--color-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(.95);transition:opacity .7s ease,transform .7s ease;pointer-events:none;overflow:hidden}
+    .slide.active{opacity:1;transform:scale(1);pointer-events:all}
+    .slide>.content{position:relative;z-index:2;width:100%;max-width:1180px;padding:clamp(1.4rem,3vw,3rem)}
+    .nav-controls{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;z-index:100;background:var(--color-glass-bg);backdrop-filter:blur(10px);padding:10px 20px;border-radius:40px;border:1px solid var(--color-glass-border)}
+    .nav-btn{width:38px;height:38px;border:none;background:var(--color-glass-bg);color:var(--color-accent-1);border-radius:50%;font-size:1.1rem;cursor:pointer}
+    .slide-dots{display:flex;gap:8px}.dot{width:10px;height:10px;border-radius:50%;background:rgba(30,41,59,.18);cursor:pointer}.dot.active{background:var(--color-accent-1);transform:scale(1.2)}
+    .slide-counter{font-size:.82rem;color:var(--color-text-muted);min-width:46px;text-align:center}
+    .reveal{opacity:0;transform:translateY(20px)}
+    .gradient-mesh{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+    .blob{position:absolute;border-radius:50%;filter:blur(80px);animation:float-slow 12s ease-in-out infinite}
+    .blob:nth-child(2){animation:float-drift 15s ease-in-out infinite}
+    .blob:nth-child(3){animation:float-slow 18s ease-in-out infinite reverse}
+    .blob:nth-child(4){animation:float-drift 21s ease-in-out infinite reverse}
+    @keyframes float-slow{0%{transform:translate(0,0) scale(1)}25%{transform:translate(40px,-40px) scale(1.08)}50%{transform:translate(-30px,30px) scale(.94)}75%{transform:translate(35px,15px) scale(1.05)}100%{transform:translate(0,0) scale(1)}}
+    @keyframes float-drift{0%{transform:translate(0,0) scale(1)}33%{transform:translate(-45px,-45px) scale(1.1)}66%{transform:translate(35px,25px) scale(.9)}100%{transform:translate(0,0) scale(1)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    .slide::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px;opacity:.02;mix-blend-mode:multiply}
+    .slide::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 58%,var(--color-vignette) 100%)}
+    .hero-emoji{font-size:108px;line-height:1;animation:float 3s ease-in-out infinite}
+    .paper-card{background:var(--color-glass-bg);border:1px solid var(--color-glass-border);border-radius:24px;box-shadow:0 10px 30px rgba(30,41,59,.06)}
+    .accent-line{border-left:5px solid var(--color-accent-1)}
+    .bar-track{height:22px;border-radius:999px;background:rgba(30,41,59,.08);overflow:hidden}
+    .bar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--color-accent-1),var(--color-accent-3));width:0}
+    .section-label{letter-spacing:.16em;text-transform:uppercase;color:var(--color-text-muted);font-size:.85rem}
+    .metric{font-size:3rem;font-weight:800;line-height:1;color:var(--color-accent-1)}
+    .small{font-size:.96rem}
+    .mouse-spotlight{position:fixed;inset:0;z-index:99;pointer-events:none}
+    @media (max-width: 900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr!important}.metric{font-size:2.2rem}}
+  </style>
+</head>
+<body>
+<div class="mouse-spotlight"></div>
+<div class="deck">
+  <div class="slide active" data-slide="1">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:420px;height:420px;top:-80px;right:-60px;background:var(--color-accent-1);opacity:.14"></div>
+      <div class="blob" style="width:320px;height:320px;bottom:-70px;left:-40px;background:var(--color-accent-2);opacity:.12"></div>
+      <div class="blob" style="width:240px;height:240px;top:40%;left:10%;background:var(--color-accent-3);opacity:.08"></div>
+    </div>
+    <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1"></canvas>
+    <div class="content text-center">
+      <div class="hero-emoji mb-5">📱</div>
+      <h1 class="font-display text-[clamp(2.5rem,5.6vw,4.8rem)] font-extrabold tracking-tight mb-4 reveal bg-linear-to-br from-accent-1 via-accent-3 to-accent-2 bg-clip-text text-transparent">Соцсети и мессенджеры: влияние на подростков</h1>
+      <p class="section-label reveal">определения · влияние · риски · безопасность</p>
+      <p class="mt-6 text-[1.18rem] text-text-secondary max-w-3xl mx-auto reveal">Учебная презентация о том, как цифровые платформы влияют на убеждения, самооценку и поведение подростков, и какие правила помогают сделать школьные онлайн-сообщества безопаснее.</p>
+    </div>
+  </div>
+
+  <div class="slide" data-slide="2">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:300px;height:300px;top:-70px;right:-70px;background:var(--color-accent-1);opacity:.08"></div>
+      <div class="blob" style="width:220px;height:220px;bottom:-60px;left:-40px;background:var(--color-accent-2);opacity:.07"></div>
+    </div>
+    <div class="content">
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-8 reveal">Ключевые понятия</h2>
+      <div class="grid grid-cols-2 grid-2 gap-6">
+        <div class="paper-card p-8 reveal">
+          <div class="text-3xl mb-3">🌐</div>
+          <h3 class="text-2xl font-bold mb-3 text-accent-1">Социальная сеть</h3>
+          <p class="text-lg text-text-secondary">Онлайн-платформа, где пользователь создаёт профиль, вступает в связи, публикует контент и взаимодействует с широкой аудиторией.</p>
+          <p class="mt-4 small text-text-muted">Примеры: ВКонтакте, Instagram, TikTok.</p>
+        </div>
+        <div class="paper-card p-8 reveal">
+          <div class="text-3xl mb-3">💬</div>
+          <h3 class="text-2xl font-bold mb-3 text-accent-3">Социальный мессенджер</h3>
+          <p class="text-lg text-text-secondary">Сервис для личной переписки, звонков, групповых чатов и каналов, где общение чаще строится внутри закрытых или полуоткрытых сообществ.</p>
+          <p class="mt-4 small text-text-muted">Примеры: Telegram, WhatsApp, Viber.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-slide="3">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:330px;height:330px;top:-90px;left:-60px;background:var(--color-accent-3);opacity:.07"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-50px;right:-50px;background:var(--color-accent-2);opacity:.06"></div>
+    </div>
+    <div class="content">
+      <p class="section-label reveal">что показывают исследования</p>
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-8 reveal">Влияние неоднозначно</h2>
+      <div class="grid grid-cols-4 grid-4 gap-5 mb-8">
+        <div class="paper-card p-6 text-center reveal"><div class="metric" data-count="74">0</div><div class="mt-2 font-semibold">подростков говорят, что соцсети помогают чувствовать связь с друзьями</div></div>
+        <div class="paper-card p-6 text-center reveal"><div class="metric" data-count="63">0</div><div class="mt-2 font-semibold">видят в соцсетях пространство для творчества</div></div>
+        <div class="paper-card p-6 text-center reveal"><div class="metric" data-count="39">0</div><div class="mt-2 font-semibold">чувствуют, что соцсети усиливают драму</div></div>
+        <div class="paper-card p-6 text-center reveal"><div class="metric" data-count="27">0</div><div class="mt-2 font-semibold">говорят, что видимое онлайн ухудшает самочувствие</div></div>
+      </div>
+      <div class="paper-card p-6 reveal accent-line">
+        <p class="text-xl text-text-secondary">Вывод исследований: цифровые платформы одновременно дают поддержку, доступ к информации и самовыражению, но при проблемном использовании связаны со снижением благополучия, перегрузкой и нарушением сна.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-slide="4">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:340px;height:340px;top:-80px;right:-70px;background:var(--color-accent-1);opacity:.08"></div>
+      <div class="blob" style="width:240px;height:240px;bottom:-40px;left:-60px;background:var(--color-accent-3);opacity:.06"></div>
+    </div>
+    <div class="content">
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-7 reveal">Как формируются убеждения и самооценка</h2>
+      <div class="grid grid-cols-3 grid-3 gap-6">
+        <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">👀</div><h3 class="text-xl font-bold mb-2">Социальное сравнение</h3><p class="text-text-secondary">Подросток сравнивает себя с «идеальными» образами и начинает оценивать внешность, успех и популярность через чужой контент.</p></div>
+        <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">❤️</div><h3 class="text-xl font-bold mb-2">Поиск одобрения</h3><p class="text-text-secondary">Лайки, реакции и комментарии превращаются в внешние маркеры значимости, из-за чего самооценка сильнее зависит от реакции сверстников.</p></div>
+        <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">🧠</div><h3 class="text-xl font-bold mb-2">Групповые нормы</h3><p class="text-text-secondary">Алгоритмы и групповая коммуникация закрепляют повторяющиеся взгляды, язык общения и модели поведения внутри цифровой среды.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-slide="5">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:300px;height:300px;top:-60px;left:-60px;background:var(--color-accent-2);opacity:.08"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-60px;right:-50px;background:var(--color-accent-1);opacity:.07"></div>
+    </div>
+    <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1"></canvas>
+    <div class="content">
+      <p class="section-label reveal">цифровые школьные сообщества</p>
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-8 reveal">Возможности чатов и групп</h2>
+      <div class="grid grid-cols-2 grid-2 gap-6">
+        <div class="paper-card p-7 reveal"><h3 class="text-2xl font-bold mb-3 text-accent-2">Что они дают</h3><ul class="text-lg text-text-secondary space-y-3"><li>• Быструю координацию по урокам, заданиям и событиям.</li><li>• Поддержку одноклассников и обмен полезными материалами.</li><li>• Вовлечение тихих учеников, которым проще писать, чем говорить вслух.</li><li>• Удобный канал связи между классом, учителем и родителями.</li></ul></div>
+        <div class="paper-card p-7 reveal"><h3 class="text-2xl font-bold mb-3 text-accent-1">Почему это важно</h3><div class="space-y-4 text-text-secondary text-lg"><div class="accent-line pl-4">Цифровая среда расширяет школьное общение за пределы урока.</div><div class="accent-line pl-4">При хороших правилах чат становится инструментом сотрудничества, а не только переписки.</div><div class="accent-line pl-4">Подростки учатся цифровой ответственности на реальных примерах.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-slide="6">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:320px;height:320px;top:-80px;right:-60px;background:var(--color-accent-1);opacity:.08"></div>
+      <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-50px;background:var(--color-accent-3);opacity:.06"></div>
+    </div>
+    <div class="content">
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-8 reveal">Частые риски школьных онлайн-сообществ</h2>
+      <div class="grid grid-cols-2 grid-2 gap-6">
+        <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">⚠️</div><h3 class="text-xl font-bold mb-2">Кибербуллинг</h3><p class="text-text-secondary">Оскорбления, насмешки, давление и исключение из общения могут происходить публично и сохраняться в переписке надолго.</p></div>
+        <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">📢</div><h3 class="text-xl font-bold mb-2">Фейки и слухи</h3><p class="text-text-secondary">Непроверенная информация быстро распространяется и может вызывать конфликт, тревогу и коллективную панику.</p></div>
+        <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">🔐</div><h3 class="text-xl font-bold mb-2">Утечка данных</h3><p class="text-text-secondary">Скриншоты, номера телефонов, фотографии и личные детали часто публикуются без согласия участников.</p></div>
+        <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">⏰</div><h3 class="text-xl font-bold mb-2">Постоянная доступность</h3><p class="text-text-secondary">Ожидание немедленного ответа повышает стресс, отвлекает от учёбы и ухудшает режим отдыха и сна.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-slide="7">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:320px;height:320px;top:-80px;left:-60px;background:var(--color-accent-3);opacity:.08"></div>
+      <div class="blob" style="width:250px;height:250px;bottom:-50px;right:-50px;background:var(--color-accent-2);opacity:.06"></div>
+    </div>
+    <div class="content">
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-8 reveal">Данные о рисках и благополучии</h2>
+      <div class="paper-card p-7 mb-6 reveal">
+        <div class="grid grid-cols-[180px_1fr_60px] gap-4 items-center mb-4"><div class="font-semibold">Связь с друзьями</div><div class="bar-track"><div class="bar-fill" data-width="74"></div></div><div class="font-bold">74%</div></div>
+        <div class="grid grid-cols-[180px_1fr_60px] gap-4 items-center mb-4"><div class="font-semibold">Творчество</div><div class="bar-track"><div class="bar-fill" data-width="63"></div></div><div class="font-bold">63%</div></div>
+        <div class="grid grid-cols-[180px_1fr_60px] gap-4 items-center mb-4"><div class="font-semibold">Драма</div><div class="bar-track"><div class="bar-fill" data-width="39"></div></div><div class="font-bold">39%</div></div>
+        <div class="grid grid-cols-[180px_1fr_60px] gap-4 items-center"><div class="font-semibold">Самочувствие хуже</div><div class="bar-track"><div class="bar-fill" data-width="27"></div></div><div class="font-bold">27%</div></div>
+      </div>
+      <div class="grid grid-cols-2 grid-2 gap-6">
+        <div class="paper-card p-6 reveal"><div class="metric" data-count="11">0</div><p class="font-semibold mt-2">процентов подростков в Европе — проблемное использование соцмедиа в 2022 году</p></div>
+        <div class="paper-card p-6 reveal"><div class="metric" data-count="7">0</div><p class="font-semibold mt-2">процентов было в 2018 году; рост указывает на усиление проблемы</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-slide="8">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:300px;height:300px;top:-70px;right:-70px;background:var(--color-accent-1);opacity:.08"></div>
+      <div class="blob" style="width:240px;height:240px;bottom:-60px;left:-50px;background:var(--color-accent-2);opacity:.07"></div>
+    </div>
+    <div class="content">
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-8 reveal">Рекомендации по цифровой безопасности</h2>
+      <div class="space-y-4">
+        <div class="paper-card p-5 accent-line reveal"><div class="text-xl font-bold mb-1">1. Беречь персональные данные</div><div class="text-lg text-text-secondary">Не публиковать адрес, пароль, номер телефона, геолокацию и приватные фото.</div></div>
+        <div class="paper-card p-5 accent-line reveal"><div class="text-xl font-bold mb-1">2. Фиксировать буллинг</div><div class="text-lg text-text-secondary">Сохранять скриншоты и сообщения, чтобы можно было обратиться к взрослым или администрации.</div></div>
+        <div class="paper-card p-5 accent-line reveal"><div class="text-xl font-bold mb-1">3. Не общаться с незнакомцами без осторожности</div><div class="text-lg text-text-secondary">Подозрительные просьбы, угрозы и шантаж нужно сразу обсуждать со взрослыми.</div></div>
+        <div class="paper-card p-5 accent-line reveal"><div class="text-xl font-bold mb-1">4. Настроить приватность</div><div class="text-lg text-text-secondary">Ограничить круг тех, кто видит профиль, фото, истории и контакты.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-slide="9">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:330px;height:330px;top:-80px;left:-50px;background:var(--color-accent-2);opacity:.08"></div>
+      <div class="blob" style="width:240px;height:240px;bottom:-50px;right:-50px;background:var(--color-accent-3);opacity:.07"></div>
+    </div>
+    <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1"></canvas>
+    <div class="content">
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-8 reveal">Медиаграмотность подростка</h2>
+      <div class="grid grid-cols-3 grid-3 gap-6">
+        <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">🔎</div><h3 class="text-xl font-bold mb-2">Проверка источника</h3><p class="text-text-secondary">Важно понимать, кто автор сообщения, откуда взяты данные и можно ли найти подтверждение в других источниках.</p></div>
+        <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">🎯</div><h3 class="text-xl font-bold mb-2">Распознавание манипуляций</h3><p class="text-text-secondary">Кликбейт, эмоциональное давление, ложные сенсации и монтаж влияют на мнение сильнее, чем кажется.</p></div>
+        <div class="paper-card p-7 reveal"><div class="text-3xl mb-3">🧾</div><h3 class="text-xl font-bold mb-2">Понимание цифрового следа</h3><p class="text-text-secondary">Любой пост, комментарий или репост может сохраниться надолго и влиять на репутацию человека.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-slide="10">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:430px;height:430px;top:-100px;right:-80px;background:var(--color-accent-1);opacity:.14"></div>
+      <div class="blob" style="width:300px;height:300px;bottom:-80px;left:-60px;background:var(--color-accent-2);opacity:.12"></div>
+      <div class="blob" style="width:220px;height:220px;top:45%;left:14%;background:var(--color-accent-3);opacity:.08"></div>
+    </div>
+    <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1"></canvas>
+    <div class="content text-center">
+      <div class="hero-emoji mb-4">🛡️</div>
+      <h2 class="font-display text-[clamp(2.5rem,5vw,4.2rem)] font-extrabold mb-4 reveal bg-linear-to-br from-accent-1 via-accent-3 to-accent-2 bg-clip-text text-transparent">Главный вывод</h2>
+      <div class="paper-card p-8 max-w-4xl mx-auto reveal">
+        <p class="text-2xl text-text-secondary">Соцсети и мессенджеры не являются ни только угрозой, ни только пользой: их эффект зависит от цифровых привычек, правил общения, уровня медиаграмотности и поддержки со стороны взрослых и школы.</p>
+      </div>
+      <p class="section-label mt-6 reveal">безопасность + критическое мышление + уважение в общении</p>
+    </div>
+  </div>
+
+  <div class="slide" data-slide="11">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:320px;height:320px;top:-70px;right:-60px;background:var(--color-accent-1);opacity:.08"></div>
+      <div class="blob" style="width:250px;height:250px;bottom:-50px;left:-50px;background:var(--color-accent-2);opacity:.07"></div>
+      <div class="blob" style="width:220px;height:220px;top:42%;left:18%;background:var(--color-accent-3);opacity:.06"></div>
+    </div>
+    <div class="content">
+      <p class="section-label reveal">использованные материалы</p>
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-6 reveal">Список источников</h2>
+      <div class="paper-card p-7 reveal">
+        <ol class="text-[1.08rem] leading-7 text-text-secondary space-y-2 pl-6">
+          <li>World Health Organization. <i>Teens, screens and mental health</i>. 2024.</li>
+          <li>Pew Research Center. <i>Teens, Social Media and Mental Health</i>. 2025.</li>
+          <li>United Nations. <i>Child and Youth Safety Online</i>.</li>
+          <li>Kaspersky. <i>Безопасность в интернете: рекомендации для детей и родителей</i>.</li>
+          <li>Research Journal. <i>Феномен социальных сетей и мессенджеров в детской и подростковой среде: социологический анализ</i>. 2024.</li>
+          <li>Справочные и обзорные материалы по определениям социальных сетей и мессенджеров.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nav-controls" aria-label="Навигация по слайдам">
+  <button class="nav-btn" onclick="changeSlide(-1)" aria-label="Предыдущий слайд">&#8249;</button>
+  <div class="slide-dots" id="dots"></div>
+  <button class="nav-btn" onclick="changeSlide(1)" aria-label="Следующий слайд">&#8250;</button>
+  <span class="slide-counter" id="counter">1 / 11</span>
+</div>
+<script>
+let current=1;const total=document.querySelectorAll('.slide').length;const dotsContainer=document.getElementById('dots');const counter=document.getElementById('counter');for(let i=1;i<=total;i++){const dot=document.createElement('div');dot.className='dot'+(i===1?' active':'');dot.onclick=()=>goToSlide(i);dotsContainer.appendChild(dot)}
+function goToSlide(n){const prev=document.querySelector('.slide.active');const next=document.querySelector(`.slide[data-slide="${n}"]`);if(prev)prev.classList.remove('active');if(next){next.classList.add('active');animateSlide(next)}current=n;updateNav()}
+function changeSlide(dir){let next=current+dir;if(next<1)next=total;if(next>total)next=1;goToSlide(next)}
+function updateNav(){document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i+1===current));counter.textContent=current+' / '+total}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();changeSlide(1)}if(e.key==='ArrowLeft'){e.preventDefault();changeSlide(-1)}})
+let touchStartX=0;document.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX});document.addEventListener('touchend',e=>{const diff=touchStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>50)changeSlide(diff>0?1:-1)})
+function animateSlide(slide){slide.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transition='none';el.style.opacity='0';el.style.transform='translateY(20px)';el.offsetHeight;const delay=i*0.08;el.style.transition=`opacity .35s ease ${delay}s, transform .35s ease ${delay}s`;el.style.opacity='1';el.style.transform='translateY(0px)'});animateSlideEffects(slide)}
+function animateSlideEffects(slide){slide.querySelectorAll('[data-count]:not(.counted)').forEach(el=>{el.classList.add('counted');const target=parseInt(el.dataset.count);let cur=0;const step=target/40;const timer=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(timer)}el.textContent=Math.round(cur)},30)});slide.querySelectorAll('.bar-fill:not(.fill-init)').forEach((bar,i)=>{bar.classList.add('fill-init');bar.style.width='0%';bar.style.transition=`width .6s ease ${i*.08}s`;bar.offsetHeight;bar.style.width=bar.dataset.width+'%'})}
+document.addEventListener('mousemove',e=>{const spotlight=document.querySelector('.mouse-spotlight');if(spotlight){const rgb=getComputedStyle(document.documentElement).getPropertyValue('--glow-color-rgb').trim()||'194,65,12';spotlight.style.background=`radial-gradient(520px circle at ${e.clientX}px ${e.clientY}px, rgba(${rgb}, 0.06), transparent 40%)`}})
+window.initParticles=function(canvas,options){if(!canvas)return;const ctx=canvas.getContext('2d');canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;const interactive=options.interactive!==false;const count=options.count||(interactive?40:14);let mx=-1000,my=-1000;const rgb=getComputedStyle(document.documentElement).getPropertyValue('--glow-color-rgb').trim()||'194,65,12';const [r,g,b]=rgb.split(',').map(Number);const particles=Array.from({length:count},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,size:Math.random()*2.2+.8,alpha:Math.random()*.28+.08}));if(interactive){canvas.addEventListener('mousemove',e=>{const rect=canvas.getBoundingClientRect();mx=e.clientX-rect.left;my=e.clientY-rect.top});canvas.addEventListener('mouseleave',()=>{mx=-1000;my=-1000})}(function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{if(interactive){const dx=p.x-mx,dy=p.y-my,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120&&dist>0){const force=(120-dist)/120*2;p.vx+=(dx/dist)*force*.08;p.vy+=(dy/dist)*force*.08}}p.vx*=.98;p.vy*=.98;p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=`rgba(${r},${g},${b},${p.alpha})`;ctx.fill()});requestAnimationFrame(animate)})()};
+document.querySelectorAll('.particle-canvas').forEach(c=>window.initParticles(c,{interactive:true,count:40}));document.querySelectorAll('.particle-canvas-ambient').forEach(c=>window.initParticles(c,{interactive:false,count:14}));
+try{animateSlide(document.querySelector('.slide.active'))}catch(e){}
+</script>
+</body>
+</html>
