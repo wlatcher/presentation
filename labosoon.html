@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сайт на обновлении</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.95), transparent 30%),
+        linear-gradient(135deg, #f7f7f7 0%, #e9e9e9 45%, #f4f4f4 100%);
+      color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.035);
+      filter: blur(70px);
+      animation: float 9s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    body::before {
+      top: -180px;
+      left: -160px;
+    }
+
+    body::after {
+      right: -180px;
+      bottom: -180px;
+      animation-delay: 2s;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 780px;
+      padding: 72px 56px 64px;
+      text-align: center;
+      border-radius: 36px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(22px);
+      animation: cardIn 0.9s ease both;
+    }
+
+    .logo {
+      width: min(100%, 560px);
+      height: auto;
+      margin-bottom: 46px;
+      animation: logoIn 1s ease both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: #f3f3f3;
+      color: #555;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e30613;
+      box-shadow: 0 0 0 rgba(227, 6, 19, 0.35);
+      animation: pulse 1.8s infinite;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.02;
+      font-weight: 900;
+      letter-spacing: -0.055em;
+      color: #111;
+    }
+
+    .line {
+      width: 96px;
+      height: 4px;
+      margin: 30px auto 26px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, transparent, #e30613, transparent);
+      animation: lineMove 2.8s ease-in-out infinite;
+    }
+
+    p {
+      margin: 0;
+      color: #666;
+      font-size: clamp(18px, 2.4vw, 22px);
+      line-height: 1.55;
+      font-weight: 400;
+    }
+
+    .footer {
+      margin-top: 38px;
+      color: #9a9a9a;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes logoIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(227, 6, 19, 0.35);
+      }
+      70% {
+        box-shadow: 0 0 0 9px rgba(227, 6, 19, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(227, 6, 19, 0);
+      }
+    }
+
+    @keyframes lineMove {
+      0%, 100% {
+        opacity: 0.45;
+        transform: scaleX(0.75);
+      }
+      50% {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(24px, -18px);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .card {
+        padding: 48px 26px 44px;
+        border-radius: 28px;
+      }
+
+      .logo {
+        margin-bottom: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <img src="D:\DOWNLOADS\site\Logo_Laboklin_1.png" alt="LABOKLIN" class="logo">
+
+    <div class="eyebrow">
+      <span class="pulse"></span>
+      Обновление сайта
+    </div>
+
+    <h1>Скоро вернёмся</h1>
+
+    <div class="line"></div>
+
+    <p>Сайт находится на техническом обновлении</p>
+
+    <div class="footer">
+      LABOKLIN
+    </div>
+  </main>
+</body>
+</html>
